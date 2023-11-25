@@ -1,7 +1,9 @@
 import cv2
+import dlib
 from deepface import DeepFace
 from datetime import datetime, timedelta
 from support import send_sms_message
+
 
 def get_combined_emotion(emotions):
     sorted_emotions = sorted(emotions.items(), key=lambda item: item[1], reverse=True)
@@ -48,14 +50,20 @@ def get_combined_emotion(emotions):
     c_emotion = emotion_combinations.get(dominant_emotion, {}).get(secondary_emotion)
     if c_emotion and secondary_value > threshold:
         return c_emotion
-    elif secondary_value > threshold / 10000 and secondary_emotion == 'sad':
+    elif secondary_value > threshold / 100 and secondary_emotion == 'sad':
         return secondary_emotion
 
     return dominant_emotion
 
+
 model_used = "haarcascade_frontalface_default.xml"
 # model_used = "haarcascade_frontalface_alt.xml"
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + model_used)
+
+# initialize dlib's shape predictor
+predictor_path = "config/landmarks.dat"  # Path to the dlib pre-trained model
+predictor = dlib.shape_predictor(predictor_path)
+detector = dlib.get_frontal_face_detector()
 
 # video = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 video = cv2.VideoCapture(1)
@@ -72,6 +80,13 @@ while video.isOpened():
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+
+    # draw face
+    dlib_rects = [dlib.rectangle(int(x), int(y), int(x + w), int(y + h)) for (x, y, w, h) in faces]
+    for rect in dlib_rects:
+        shape = predictor(gray, rect)
+        for i in range(0, 68):  # total 68 landmarks
+            cv2.circle(frame, (shape.part(i).x, shape.part(i).y), 1, (0, 255, 0), -1)
 
     for x, y, w, h in faces:
         image = cv2.rectangle(frame, (x, y), (x + w, y + h), (89, 2, 236), 1)
