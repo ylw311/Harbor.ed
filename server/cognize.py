@@ -5,10 +5,10 @@ from scipy.spatial import Delaunay
 from deepface import DeepFace
 from datetime import datetime, timedelta
 from support import send_sms_message, send_email
-from utils import draw_delaunay, get_combined_emotion
+from utils import draw_delaunay, get_combined_emotion, generate_color_gradient
 
 
-settings_draw = 'none'  # 'tri', 'dot', or 'none'
+settings_draw = 'tri'  # 'tri', 'dot', or 'none'
 preferred_communicaation = 'sms'  # 'email' or 'sms' or 'none'
 quiet_model = False
 emotion_counter_threshold = 30
@@ -45,14 +45,16 @@ while video.isOpened():
             points = np.array([[p.x, p.y] for p in shape.parts()])
             subdiv = Delaunay(points)
             triangleList = subdiv.simplices.copy()
-            delaunay_color = (255, 239, 150)
-            draw_delaunay(frame, points, triangleList, delaunay_color)
+            triangle_colors = generate_color_gradient(len(triangleList), np.array([134, 255, 162]), np.array([214, 64, 22]))
+            draw_delaunay(frame, points, triangleList, triangle_colors)
         elif settings_draw == 'dot':
             dlib_rects = [dlib.rectangle(int(x), int(y), int(x + w), int(y + h)) for (x, y, w, h) in faces]
+            dot_colors = generate_color_gradient(68, np.array([134, 255, 162]), np.array([214, 64, 22]))
             for rect in dlib_rects:
                 shape = predictor(gray, rect)
                 for i in range(0, 68):  # total 68 landmarks
-                    cv2.circle(frame, (shape.part(i).x, shape.part(i).y), 1, (0, 255, 0), -1)
+                    color = tuple(map(int, dot_colors[i]))
+                    cv2.circle(frame, (shape.part(i).x, shape.part(i).y), 3, color, -1)
 
         try:
             # face_frame = frame[y:y + h, x:x + w]
