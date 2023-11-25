@@ -1,2 +1,3 @@
 cv2
 deepface
+infobip-api-python-sdk

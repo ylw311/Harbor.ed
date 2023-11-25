@@ -1,118 +1,56 @@
 import React from "react";
-import "./../css/Navbar.css";
 
 function Navbar() {
   return (
-    <div className="navigation-wrap bg-light start-header start-style">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <nav className="navbar navbar-expand-md navbar-light">
+    <nav className="bg-white border-gray-200 fixed w-full z-20">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <img
+            src="./images/heartmessagetransparent.png"
+            className="h-8"
+            alt="Logo"
+          />
+          <span className="text-grey-900 self-center text-2xl font-semibold whitespace-nowrap">
+            Dont Jump DP
+          </span>
+        </a>
+
+        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+            <li className="flex items-center justify-center">
               <a
-                className="navbar-brand"
-                href="https://front.codes/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                className="block py-4 px-6 text-white bg-pink-400 rounded md:bg-transparent md:text-pink-700 md:p-0 md:hover:text-pink-400"
+                aria-current="page"
               >
-                <img src="https://assets.codepen.io/1462889/fcy.png" alt="" />
+                Home
               </a>
-
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+            </li>
+            <li className="flex items-center justify-center">
+              <a
+                href="/about"
+                className="block py-4 px-6 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-400 md:p-0"
               >
-                <span className="navbar-toggler-icon"></span>
+                About
+              </a>
+            </li>
+            <li className="flex items-center justify-center">
+              <a
+                href="#"
+                className="block py-4 px-6 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-400 md:p-0"
+              >
+                Services
+              </a>
+            </li>
+            <li className="flex items-center justify-center">
+              <button class="block px-6 py-4 bg-gradient-to-r from-rose-300 via-purple-400 to-indigo-400 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
+                Sign Up
               </button>
-
-              <div
-                className="collapse navbar-collapse"
-                id="navbarSupportedContent"
-              >
-                <ul className="navbar-nav ml-auto py-4 py-md-0">
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                    <a
-                      className="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                      href="#"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Home
-                    </a>
-                    <div className="dropdown-menu">
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        Something else here
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </div>
-                  </li>
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a className="nav-link" href="#">
-                      Portfolio
-                    </a>
-                  </li>
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a className="nav-link" href="#">
-                      Agency
-                    </a>
-                  </li>
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a
-                      className="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                      href="#"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Services
-                    </a>
-                    <div className="dropdown-menu">
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        Something else here
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </div>
-                  </li>
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a className="nav-link" href="#">
-                      Journal
-                    </a>
-                  </li>
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a className="nav-link" href="#">
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 

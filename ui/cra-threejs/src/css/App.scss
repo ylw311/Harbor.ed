@@ -6,7 +6,7 @@ $bot-text: #7028e4;
 $user-text: #e5b2ca;
 $red: #ff7871;
 $red-dark: #db0035;
-$shadow: rgba(#f43b47,0.4);
+$shadow: rgba(#f43b47, 0.4);
 $stroke: 4px;
 $br: 12px;
 $dot-size: 9px;
@@ -38,7 +38,7 @@ body,
   width: 100vw;
   height: 100vh;
   margin: 0;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 body {
@@ -52,7 +52,7 @@ body {
 body,
 .app-container {
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -71,10 +71,7 @@ body,
     flex: 1 0 20vw;
     margin: 0 5vw 5vw 0;
     margin-top: auto;
-    text-shadow: 
-      1px 2px 0px $shadow, 
-		3px 2px 0px $shadow, 
-		2px 3px 0px $shadow;
+    text-shadow: 1px 2px 0px $shadow, 3px 2px 0px $shadow, 2px 3px 0px $shadow;
     position: relative;
     .header-img {
       position: absolute;
@@ -90,7 +87,7 @@ body,
   .chat-container {
     animation: fade 0.5s ease 0.2s both;
     transform: perspective(100vh) rotateY(-7deg);
-    border-radius: $br; 
+    border-radius: $br;
     box-shadow: 10px 5px 40px 10px $shadow;
     flex: 1 1 70vh;
     display: flex;
@@ -107,19 +104,19 @@ body,
       padding: $dot-size / 2;
       background: $highlight;
       .dot {
-        margin: $dot-size $dot-size*1.5 $dot-size 0;
+        margin: $dot-size $dot-size * 1.5 $dot-size 0;
         width: $dot-size;
         height: $dot-size;
         background: $red;
         border-radius: 50%;
         box-shadow: 3px 3px $red-dark;
-        &:nth-child(1){
+        &:nth-child(1) {
           animation: grow 0.3s $snap 0.3s both;
         }
-        &:nth-child(2){
+        &:nth-child(2) {
           animation: grow 0.3s $snap 0.5s both;
         }
-        &:nth-child(3){
+        &:nth-child(3) {
           animation: grow 0.3s $snap 0.7s both;
         }
       }
@@ -268,25 +265,21 @@ body,
 }
 
 @keyframes grow {
-	from
-  {		
+  from {
     transform: scale(0);
   }
-	to
-	{	
+  to {
     transform: none;
   }
 }
 
 @keyframes up {
-	from
-  {		
+  from {
     opacity: 0;
-		transform: translateY(1rem);
+    transform: translateY(1rem);
   }
-	to
-	{	
+  to {
     opacity: 1;
-		transform: none;
+    transform: none;
   }
 }
