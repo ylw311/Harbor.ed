@@ -5,7 +5,11 @@ function Navbar() {
     <nav className="bg-white border-gray-200 fixed w-full z-20">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="./heartmessagetransparent.png" className="h-8" alt="Logo" />
+          <img
+            src="./images/heartmessagetransparent.png"
+            className="h-8"
+            alt="Logo"
+          />
           <span className="text-grey-900 self-center text-2xl font-semibold whitespace-nowrap">
             Dont Jump DP
           </span>
