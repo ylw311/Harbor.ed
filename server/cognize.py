@@ -4,11 +4,12 @@ import numpy as np
 from scipy.spatial import Delaunay
 from deepface import DeepFace
 from datetime import datetime, timedelta
-from support import send_sms_message
+from support import send_sms_message, send_email
 from utils import draw_delaunay, get_combined_emotion
 
 
-settings_draw = 'none' # 'tri', 'dot', or 'none'
+settings_draw = 'none'  # 'tri', 'dot', or 'none'
+preferred_communicaation = 'sms'  # 'email' or 'sms' or 'none'
 quiet_model = False
 emotion_counter_threshold = 30
 
@@ -65,7 +66,10 @@ while video.isOpened():
             if combined_emotion in sad_emotions:
                 emotion_counter += 1
                 if emotion_counter >= emotion_counter_threshold:
-                    send_sms_message()
+                    if preferred_communicaation == 'sms':
+                        send_sms_message()
+                    elif preferred_communicaation == 'email':
+                        send_email("attachment.png")
                     emotion_counter = 0  # reset the counter after sending SMS
             else:
                 emotion_counter -= 0.05  # decrease counter if the emotion is not sad or angry
