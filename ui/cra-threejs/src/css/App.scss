@@ -1,0 +1,292 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
+
+$light: white;
+$dark: #453a94;
+$bot-text: #7028e4;
+$user-text: #e5b2ca;
+$red: #ff7871;
+$red-dark: #db0035;
+$shadow: rgba(#f43b47,0.4);
+$stroke: 4px;
+$br: 12px;
+$dot-size: 9px;
+
+$inner-margin: 15px;
+
+$avatar-size: 52px;
+
+$avatar-url: "https://zephyo.github.io/22Days/code/10/graphics/cutebearicon.gif";
+$bg-url: "https://zephyo.github.io/22Days/code/10/graphics/manu-franco-unsplash.jpg";
+$header-url: "https://zephyo.github.io/22Days/code/10/graphics/rikkakuma.gif";
+
+$snap: cubic-bezier(0.36, -0.04, 0.15, 1.64);
+
+$highlight1: rgba(255, 255, 255, 0.2);
+$highlight: rgba(255, 255, 255, 0.5);
+
+h1 {
+  font-size: 7vh;
+}
+
+h2 {
+  font-size: 4.5vh;
+}
+
+html,
+body,
+#app {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Inconsolata", monospace;
+  background: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
+  color: $light;
+  background-attachment: fixed;
+}
+
+#app,
+body,
+.app-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  padding: 5vw 10vw 5vw 10vw;
+  .header {
+    animation: fade 1s ease 1.5s both;
+    z-index: 20;
+    text-align: right;
+    flex: 1 0 20vw;
+    margin: 0 5vw 5vw 0;
+    margin-top: auto;
+    text-shadow: 
+      1px 2px 0px $shadow, 
+		3px 2px 0px $shadow, 
+		2px 3px 0px $shadow;
+    position: relative;
+    .header-img {
+      position: absolute;
+      top: -4rem;
+      right: 10vw;
+      z-index: -1;
+      width: 12rem;
+      height: 12rem;
+      background: url($header-url) no-repeat;
+      background-size: contain;
+    }
+  }
+  .chat-container {
+    animation: fade 0.5s ease 0.2s both;
+    transform: perspective(100vh) rotateY(-7deg);
+    border-radius: $br; 
+    box-shadow: 10px 5px 40px 10px $shadow;
+    flex: 1 1 70vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+    .chat-header {
+      border: $stroke solid $dark;
+      border-bottom: 0;
+      border-radius: $br $br 0 0;
+      flex: none;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: $dot-size / 2;
+      background: $highlight;
+      .dot {
+        margin: $dot-size $dot-size*1.5 $dot-size 0;
+        width: $dot-size;
+        height: $dot-size;
+        background: $red;
+        border-radius: 50%;
+        box-shadow: 3px 3px $red-dark;
+        &:nth-child(1){
+          animation: grow 0.3s $snap 0.3s both;
+        }
+        &:nth-child(2){
+          animation: grow 0.3s $snap 0.5s both;
+        }
+        &:nth-child(3){
+          animation: grow 0.3s $snap 0.7s both;
+        }
+      }
+    }
+
+    .msg-container {
+      background: $highlight1;
+      padding: $inner-margin $inner-margin 0 $inner-margin;
+      flex: auto;
+      border: $stroke solid $dark;
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      .user-message-container {
+        align-self: flex-end;
+      }
+      .bot-message-container {
+        flex: none;
+        display: flex;
+        .bot-avatar {
+          background-image: url($avatar-url);
+          background-size: cover;
+          background-position: center;
+          border-radius: 50%;
+          width: $avatar-size;
+          height: $avatar-size;
+          margin-right: 1vw;
+        }
+        &:first-child {
+          .chat-bubble {
+            animation: pop 0.3s $snap 0.9s both;
+          }
+        }
+      }
+      .chat-bubble {
+        display: inline-block;
+        border-radius: $br;
+        padding: 1rem;
+        margin-bottom: $inner-margin;
+        max-width: 60%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        // hyphens: auto;
+        opacity: 0;
+        animation: pop 0.3s $snap forwards;
+        will-change: transform;
+        &.user {
+          float: right;
+          border-top-right-radius: 0;
+          background: $dark;
+          color: $user-text;
+          transform-origin: top right;
+        }
+        &.bot {
+          border-top-left-radius: 0;
+          background: $light;
+          color: $bot-text;
+          transform-origin: top left;
+        }
+      }
+    }
+
+    .input-container {
+      animation: up 0.35s $snap 0.5s both;
+      border: $stroke solid $dark;
+      border-top: 0;
+      border-radius: 0 0 $br $br;
+      z-index: 30;
+      flex: none;
+      height: 14vh;
+      max-height: 100px;
+      background: $highlight;
+      display: flex;
+      justify-content: stretch;
+      transition: background 0.3s ease;
+      input {
+        font-weight: 700;
+        flex: auto;
+        background: transparent;
+        border: none;
+        font-family: "Inconsolata";
+        color: $light;
+        font-size: 1rem;
+        padding: 1.5rem;
+      }
+      *::placeholder {
+        color: $red-dark;
+      }
+      .input-submit {
+        margin: 2vh;
+        background: $red;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 4px 4px $red-dark;
+        width: 10vh;
+        position: relative;
+        &:after {
+          content: "";
+          width: 0.5rem;
+          height: 0.5rem;
+          border: 5px solid $light;
+          border-left: 0;
+          border-bottom: 0;
+          transform: rotate(45deg);
+          position: absolute;
+          top: calc(50% - 0.5rem);
+          left: calc(50% - 0.5rem);
+        }
+      }
+    }
+  }
+}
+
+.background {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url($bg-url) no-repeat 0 0;
+  filter: blur(5vh);
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.66);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes grow {
+	from
+  {		
+    transform: scale(0);
+  }
+	to
+	{	
+    transform: none;
+  }
+}
+
+@keyframes up {
+	from
+  {		
+    opacity: 0;
+		transform: translateY(1rem);
+  }
+	to
+	{	
+    opacity: 1;
+		transform: none;
+  }
+}
