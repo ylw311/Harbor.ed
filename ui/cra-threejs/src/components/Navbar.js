@@ -1,88 +1,63 @@
 import React from "react";
-import "./../css/Navbar.css";
-import { useState, useEffect } from "react";
 
 function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <div
-      className={`navigation-wrap bg-light start-header ${
-        isScrolled ? "scroll-on" : "start-style"
-      }`}
-    >
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <nav className="navbar navbar-expand-md navbar-light">
+    <nav className="bg-white border-gray-200 ">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="./heartmessagetransparent.png" className="h-8" alt="Logo" />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap">
+            Dont Jump DP
+          </span>
+        </a>
+
+        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+            <li>
               <a
-                className="navbar-brand"
-                href="https://front.codes/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                className="block py-2 px-3 text-white bg-pink-400 rounded md:bg-transparent md:text-pink-700 md:p-0 md:hover:text-pink-400"
+                aria-current="page"
               >
-                <img src="https://assets.codepen.io/1462889/fcy.png" alt="" />
+                Home
               </a>
-
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-400 md:p-0"
               >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-
-              <div
-                className="collapse navbar-collapse"
-                id="navbarSupportedContent"
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-400 md:p-0"
               >
-                <ul className="navbar-nav ml-auto py-4 py-md-0">
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
-                    <a className="nav-link" href="#">
-                      Home
-                    </a>
-                  </li>
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a className="nav-link" href="#">
-                      Agency
-                    </a>
-                  </li>
-
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a className="nav-link" href="#">
-                      Journal
-                    </a>
-                  </li>
-                  <li className="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                    <a className="nav-link" href="#">
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-          </div>
+                Services
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-400 md:p-0"
+              >
+                Pricing
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-400 md:p-0"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 
