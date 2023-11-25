@@ -90,11 +90,11 @@ while video.isOpened():
                     send_sms_message()
                     emotion_counter = 0  # reset the counter after sending SMS
             else:
-                emotion_counter -= 0.2  # decrease counter if the emotion is not sad or angry
+                emotion_counter -= 0.03  # decrease counter if the emotion is not sad or angry
         except Exception as e:
             # cv2.putText(image, "Neutral", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (224, 77, 176), 2)
             print(f'Could not find your face: {e}')
-            emotion_counter -= 0.05
+            emotion_counter -= 0.01
 
         print(emotion_counter)
 
