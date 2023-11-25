@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar.js";
 function App() {
   return (
     <>
+      <Navbar />
       <Router>
         <div className="App">
           <header className="App-header">{/* <Three /> */}</header>
@@ -16,7 +17,6 @@ function App() {
           </Routes>
         </div>
       </Router>
-      {/* <Navbar /> */}
     </>
   );
 }
