@@ -129,8 +129,9 @@ class Main extends React.Component {
           botLoading: false
         });
         // redirect to character selection
-        this.props.navigate('/character-selection');
-
+        setTimeout(() => {
+          this.props.navigate('/character-selection');
+        }, 1000);
       });
   };
 
