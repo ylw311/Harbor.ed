@@ -16,7 +16,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-      {/* <Navbar /> */}
+      <Navbar />
     </>
   );
 }
