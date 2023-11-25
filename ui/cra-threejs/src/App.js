@@ -1,5 +1,5 @@
-import './App.css';
-import Three from './Three';
+import "./App.css";
+import Three from "./Three";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./components/main.js";
 import Navbar from "./components/Navbar.js";
