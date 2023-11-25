@@ -98,7 +98,7 @@ class Main extends React.Component {
       botLoading: true
     });
 
-    // Replace with your Dialogflow client token
+    // placeholder dialogflow api call
     var request = new Request(
       "https://api.dialogflow.com/v1/query?v=20150910&contexts=shop&lang=en&query=" +
         newMessage +
