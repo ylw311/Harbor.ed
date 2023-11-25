@@ -53,16 +53,18 @@ def get_combined_emotion(emotions):
     c_emotion = emotion_combinations.get(dominant_emotion, {}).get(secondary_emotion)
     if c_emotion and secondary_value > threshold:
         return c_emotion
-    elif secondary_value > threshold / 10 and secondary_emotion == 'sad':
+    elif secondary_value > threshold / 100 and secondary_emotion == 'sad':
         return secondary_emotion
 
     return dominant_emotion
 
 
 settings_draw = 'none' # 'tri', 'dot', or 'none'
+quiet_model = False
+emotion_counter_threshold = 30
+
 sad_emotions = ['Sad', 'Frustrated', 'Despondent', 'Bittersweet', 'Melancholic', 'Angry', 'Outraged', 'Indignant', 'Bitter', 'Sarcastic']
 emotion_counter = 0
-emotion_counter_threshold = 30
 
 model_used = "haarcascade_frontalface_default.xml" # or "haarcascade_frontalface_alt.xml"
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + model_used)
@@ -124,9 +126,11 @@ while video.isOpened():
             emotion_counter -= 0.01
 
     cv2.imshow('video', frame)
-    key = cv2.waitKey(1)
-    if key == ord('q'):
-        break
+
+    if not quiet_model:
+        key = cv2.waitKey(1)
+        if key == ord('q'):
+            break
 
 video.release()
 cv2.destroyAllWindows()
