@@ -1,13 +1,14 @@
 
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../css/App.scss';
 
 const data = {
   headerText: "Hi ✨",
-  pText: "Made with React, Dialogflow..(add more here)",
-  p2Text: "Talk to me! I'm Lindor! I'm very tasty i mean what-",
-  userMessages: ["No feeling a bit sad..waterloo too depressing", "what card?", "ohhh loll that's so stupid", "Thanks though XD"],
-  botMessages: ["Aw that is not good, but can you get my watcard?", "WatCard!", "I know :P"],
+  pText: "",
+  p2Text: "Made with React, Dialogflow..(add more here)",
+  userMessages: [],
+  botMessages: [],
   botGreeting: "oh hi! nice day today?",
   botLoading: false
 };
@@ -124,9 +125,12 @@ class Main extends React.Component {
       .catch(error => {
         console.log("ERROR:", error);
          this.setState({
-          botMessages: updatedBotMessages.concat('?'),
+          botMessages: updatedBotMessages.concat('Let\'s pick your character'),
           botLoading: false
         });
+        // redirect to character selection
+        this.props.navigate('/character-selection');
+
       });
   };
 
@@ -182,7 +186,7 @@ class Main extends React.Component {
       event.target.value = "";
     }
     
-    if (event.target.value!=""){
+    if (event.target.value !== ""){
       event.target.parentElement.style.background = 'rgba(69,58,148,0.6)';
     }
     else{
@@ -201,15 +205,25 @@ class Main extends React.Component {
 
 
   render() {
+
+    const readMoreButton = (
+      <button className="custom-btn btn-6"><span>Read More</span></button>
+    );
+
+    
     return (
       <div className="app-container">
 
 
         <Header
           headerText={this.state.headerText}
+          buttonElement={readMoreButton}
           pText={this.state.pText}
           p2Text={this.state.p2Text}
         />
+        
+
+        
         <div className="chat-container">
           <ChatHeader />
           {this.showMessages()}
@@ -220,6 +234,12 @@ class Main extends React.Component {
   }
 }
 
+function withNavigate(Component) {
+  return props => {
+    const navigate = useNavigate();
+    return <Component {...props} navigate={navigate} />;
+  };
+}
 
-export default Main;
-
+// export default Main;
+export default withNavigate(Main);
