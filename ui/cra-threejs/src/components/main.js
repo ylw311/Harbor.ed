@@ -187,7 +187,7 @@ class Main extends React.Component {
       event.target.value = "";
     }
     
-    if (event.target.value !== "" && event.target.value?.trim()?.length > -2){
+    if (event.target.value?.trim()?.length > 0){
       event.target.parentElement.style.background = 'rgba(69,58,148,0.6)';
     }
     else {
