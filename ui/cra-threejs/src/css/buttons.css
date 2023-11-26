@@ -779,6 +779,7 @@ outline: none;
 .btn-16 {
   border: none;
   color: #000;
+  margin-top: 5%;
 }
 .btn-16:after {
   position: absolute;
