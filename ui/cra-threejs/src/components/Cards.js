@@ -30,7 +30,7 @@ const Card = () => {
     {
       id: 1,
       icon: faWalking,
-      mainText: "Koi - Journatlist",
+      mainText: "Koi - Journalist",
       subText: "Wise - Good for rants",
       backgroundImage:
         "https://i.pinimg.com/736x/95/59/6d/95596de5ffae2c9da9502f4e43b11d92.jpg",
@@ -91,7 +91,7 @@ const Card = () => {
 
   return (
     <div>
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center card-container">
       <div className="options">
         {options.map((option) => (
           <div
@@ -138,7 +138,7 @@ const Card = () => {
         ))}
       </div>
     </div>
-    <button className="custom-btn btn-6" onClick={handleButtonClick}>
+    <button className="custom-btn btn-16" onClick={handleButtonClick}>
         <span>Confirm</span>
       </button>
     </div>

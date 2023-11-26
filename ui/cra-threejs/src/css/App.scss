@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
 
 $light: white;
-$dark: #453a94;
-$bot-text: #7028e4;
-$user-text: #e5b2ca;
-$red: #ff7871;
-$red-dark: #db0035;
-$shadow: rgba(#f43b47, 0.4);
+$dark: #80b6eb;
+$bot-text: #298ef3;
+$user-text: #ffffff;
+$red: #8bc5ff;
+$red-dark: #2d8eef;
+$shadow: rgba(#000000, 0.9);
 $stroke: 4px;
 $br: 12px;
 $dot-size: 9px;
@@ -39,7 +39,9 @@ body,
   height: 100vh;
   margin: 0;
   // overflow: hidden;
+  font-family: 'Poppins', sans-serif !important;
 }
+
 
 body {
   font-family: "Inconsolata", monospace;
@@ -73,7 +75,7 @@ body,
     flex: 1 0 20vw;
     margin: 0 5vw 5vw 0;
     margin-top: auto;
-    text-shadow: 1px 2px 0px $shadow, 3px 2px 0px $shadow, 2px 3px 0px $shadow;
+    text-shadow: 0.5px 0.5px 0px $shadow, 0.5px 0.5px 0px $shadow, 0.5px 0.5px 0px $shadow;
     position: relative;
     .header-img {
       position: absolute;

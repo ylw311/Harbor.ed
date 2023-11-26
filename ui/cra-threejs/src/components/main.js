@@ -36,13 +36,14 @@ var ChatHeader = props => {
   );
 };
 
+
 var UserInput = props => {
   return (
     <div className="input-container">
       <input
         id="chat"
         type="text"
-        onKeyPress={props.onInput}
+        onKeyDown={props.onInput}
         placeholder="type something"
       />
       <button className="input-submit" onClick={props.onClick} />
@@ -124,13 +125,13 @@ class Main extends React.Component {
       .catch(error => {
         console.log("ERROR:", error);
          this.setState({
-          botMessages: updatedBotMessages.concat('Let\'s pick your character'),
+          botMessages: updatedBotMessages.concat(':)'),
           botLoading: false
         });
         // redirect to character selection
-        setTimeout(() => {
-          this.props.navigate('/character-selection');
-        }, 1000);
+        // setTimeout(() => {
+        //   this.props.navigate('/character-selection');
+        // }, 1000);
       });
   };
 
@@ -186,10 +187,10 @@ class Main extends React.Component {
       event.target.value = "";
     }
     
-    if (event.target.value !== ""){
+    if (event.target.value !== "" && event.target.value?.trim()?.length > -2){
       event.target.parentElement.style.background = 'rgba(69,58,148,0.6)';
     }
-    else{
+    else {
       event.target.parentElement.style.background = 'rgba(255, 255, 255, 0.6)';
     }
   };
