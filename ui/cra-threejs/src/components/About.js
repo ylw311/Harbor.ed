@@ -38,10 +38,10 @@ function About() {
             castShadow
           />
           <Environment preset="sunset" />
-          {/* <ModelKoi /> */}
+          <ModelKoi />
           {/* <ModelLionFish /> */}
           {/* <ModelPuffer /> */}
-          <ModelSwordFish />
+          {/* <ModelSwordFish /> */}
           <OrbitControls
             enablePan={true}
             enableZoom={true}

@@ -17,6 +17,12 @@ export function ModelKoi(props) {
     }
   }, [actions, animations]);
 
+  useFrame(() => {
+    if (group.current) {
+      group.current.rotation.y += 0.003; // This will rotate the model around the y-axis
+    }
+  });
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">
@@ -81,6 +87,11 @@ export function ModelBlob(props) {
     }
   }, [actions, animations]);
 
+  useFrame(() => {
+    if (group.current) {
+      group.current.rotation.y += 0.003; // This will rotate the model around the y-axis
+    }
+  });
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">
@@ -133,6 +144,11 @@ export function ModelSnapper(props) {
     }
   }, [actions, animations]);
 
+  useFrame(() => {
+    if (group.current) {
+      group.current.rotation.y += 0.003; // This will rotate the model around the y-axis
+    }
+  });
   return (
     <group
       ref={group}
