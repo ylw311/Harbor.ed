@@ -33,15 +33,15 @@ const Card = () => {
       mainText: "Koi - Journatlist",
       subText: "Wise - Good for rants",
       backgroundImage:
-        "https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg",
+        "https://i.pinimg.com/736x/95/59/6d/95596de5ffae2c9da9502f4e43b11d92.jpg",
     },
     {
       id: 2,
       icon: faSnowflake,
-      mainText: "Blobfish - Joyful Distraction",
+      mainText: "Clownfish - Joyful Distraction",
       subText: "Tells corny jokes, but a good friend",
       backgroundImage:
-        "https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg",
+        "https://img.freepik.com/premium-photo/clown-fish-coral-reef-macro-underwater-scene-view-coral-fish-underwater-diving_548821-20382.jpg?size=626&ext=jpg",
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ const Card = () => {
       mainText: "Swordfish - Mentor",
       subText: "Sharp and goal-oriented.",
       backgroundImage:
-        "https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg",
+        "https://i0.wp.com/www.divedesco.com/Content/images/waterBG.jpg",
     },
     {
       id: 4,
@@ -57,9 +57,8 @@ const Card = () => {
       mainText: "Lionfish - Educator",
       subText: "Knowledgeable and informative",
       backgroundImage:
-        "https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg",
+        "https://t3.ftcdn.net/jpg/01/88/01/62/360_F_188016281_A2vlSo5nfirsiBL9O955zKS43TO3XpcY.jpg",
     },
-    // ...add other options
   ];
 
   const [activeOptionId, setActiveOptionId] = useState(options[0].id);

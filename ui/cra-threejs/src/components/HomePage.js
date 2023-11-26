@@ -19,7 +19,7 @@ const HomePage = () => {
     <div className="parallax-page">
       <nav>
         <div className="menu">
-          <p className="website_name">Poisson Buddy</p>
+          <p className="website_name">Harbor.ed</p>
           <div className="menu_links">
             {/* <a href="/analytics" className="link">
               Poisson Buddy
@@ -73,16 +73,16 @@ const HomePage = () => {
             </div>
 
             <p className="p404" data-depth="0.50">
-              Poisson
+              Harbor.ed
             </p>
             <p className="p404" data-depth="0.10">
-            Poisson
+            Harbor.ed
             </p>
           </div>
           <div className="text">
             <article>
               <p>
-                Your friendly poisson is here, even if you're feeling down from poisson distributions.
+                Your personal safe space.
               </p>
               <button>
                 <Link
