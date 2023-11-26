@@ -19,12 +19,12 @@ const HomePage = () => {
     <div className="parallax-page">
       <nav>
         <div className="menu">
-          <p className="website_name">OPTimism</p>
+          <p className="website_name">Poisson Buddy</p>
           <div className="menu_links">
-            <a href="/analytics" className="link">
-              My OPTimism
-            </a>
-            <a href="/leaderboard" className="link">
+            {/* <a href="/analytics" className="link">
+              Poisson Buddy
+            </a> */}
+            {/* <a href="/leaderboard" className="link">
               Leaderboard
             </a>
             <a href="/redeem" className="link">
@@ -35,7 +35,7 @@ const HomePage = () => {
             </a>
             <a href="/logout" className="link">
               Log Out
-            </a>
+            </a> */}
           </div>
           <div className="menu_icon" id="menuIcon">
             <span className="icon"></span>
@@ -73,27 +73,26 @@ const HomePage = () => {
             </div>
 
             <p className="p404" data-depth="0.50">
-              OPTimism
+              Poisson
             </p>
             <p className="p404" data-depth="0.10">
-              OPTimism
+            Poisson
             </p>
           </div>
           <div className="text">
             <article>
               <p>
-                Guarding Vision, One Frame at a Time <br />
-                Train, Track, Ask, Enhance
+                Your friendly poisson is here, even if you're feeling down from poisson distributions.
               </p>
               <button>
                 <Link
         to={{
-          pathname: '/eye-exercises',
+          pathname: '/character',
           state: { prevPath: location.pathname }
         }}
         className="block w-full"
       >
-        Start Eye Exercise
+        PICK MY CHARACTER
       </Link>
               </button>
             </article>

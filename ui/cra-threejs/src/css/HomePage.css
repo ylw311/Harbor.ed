@@ -189,7 +189,7 @@ input:focus,
 	padding: 0;
 	height: 100vh;
 	font-family: "Barlow", sans-serif;
-	background: #695681;
+	/* background: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); */
 }
 
 .logo {
@@ -545,7 +545,8 @@ nav .menu .menu_icon:hover .icon:after {
 .wrapper .container .text article button:hover {
 	box-shadow: 0px 10px 10px -10px rgba(54, 24, 79, 0.5);
 	transform: translateY(5px);
-	background: #fb8a8a;
+	background: #fb8a8a; 
+	/* button colour */
 	color: white;
 }
 
@@ -594,12 +595,14 @@ nav .menu .menu_icon:hover .icon:after {
 	position: absolute;
 	width: 600px;
 	height: 600px;
-	background-color: rgba(54, 24, 79, 0.2);
+	background-color: rgba(255,178,209, 0.2);
+
+	/*  outer circle colour */
 	border-radius: 100%;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	box-shadow: inset 5px 20px 40px rgba(54, 24, 79, 0.25), inset 5px 0px 5px rgba(50, 36, 62, 0.3), inset 5px 5px 20px rgba(50, 36, 62, 0.25), 2px 2px 5px rgba(255, 255, 255, 0.2);
+	box-shadow: inset 5px 20px 40px rgba(255,178,209,.25), inset 5px 0px 5px rgba(50, 36, 62, 0.3), inset 5px 5px 20px rgba(50, 36, 62, 0.25), 2px 2px 5px rgba(255, 255, 255, 0.2);
 	animation: circle 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
 }
 
@@ -622,9 +625,10 @@ nav .menu .menu_icon:hover .icon:after {
 	position: absolute;
 	width: 400px;
 	height: 400px;
-	background-color: rgba(54, 24, 79, 0.3);
+	background-color: rgba(255,178,209,x 0.3);
+	/* inner circle colour */
 	border-radius: 100%;
-	box-shadow: inset 5px 20px 40px rgba(54, 24, 79, 0.25), inset 5px 0px 5px rgba(50, 36, 62, 0.3), inset 5px 5px 20px rgba(50, 36, 62, 0.25), 2px 2px 5px rgba(255, 255, 255, 0.2);
+	box-shadow: inset 5px 20px 40px rgba(6, 4, 4, 0.25), inset 5px 0px 5px rgba(251, 111, 146, 0.5), inset 5px 5px 20px rgba(50, 36, 62, 0.25), 2px 2px 5px rgba(255, 255, 255, 0.2);
 	animation: circle 0.8s 0.4s cubic-bezier(1, 0.06, 0.25, 1) backwards;
 }
 

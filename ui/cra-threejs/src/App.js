@@ -23,7 +23,7 @@ function App() {
 
             <Route path="/chat" element={<Main />} />
             <Route path="/about" element={<About />} />
-            <Route path="/character-selection" element={<Cards />} /> 
+            <Route path="/character" element={<Cards />} /> 
             {/* or switch to characcters for fishyyyyyyyyyyy */}
           </Routes>
         </div>

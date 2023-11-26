@@ -47,7 +47,9 @@ body {
       .option {
          position: relative;
          overflow:hidden;
-
+         transform:scale(0.9);
+         transition: transform 0.5s ease;
+         
          min-width:60px;
          margin:10px;
          //border:0px solid --defaultColor;
@@ -85,9 +87,9 @@ body {
                   opacity:1;
                }
             }
-            /*&:active {
-               transform:scale(0.9);
-            }*/
+            // &:active {
+            //    transform:scale(0.9);
+            // }
          }
          &:not(.active) {
             flex-grow:1;

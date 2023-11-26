@@ -43,7 +43,9 @@ body,
 
 body {
   font-family: "Inconsolata", monospace;
-  background: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
+  // background: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
+  background: linear-gradient(-20deg, #ddd6f3 0%, #ffc2d1 100%, #ffc2d1 100%);
+  
   color: $light;
   background-attachment: fixed;
 }

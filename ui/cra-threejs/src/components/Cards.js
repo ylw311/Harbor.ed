@@ -66,7 +66,7 @@ const Card = () => {
   const navigate = useNavigate(); // Direct use of the hook
 
   const handleOptionClick = (id) => {
-    setActiveOptionId(id);
+    setActiveOptionId(activeOptionId === id ? null : id);
   };
 
   const handleButtonClick = () => {
@@ -93,13 +93,13 @@ const Card = () => {
   return (
     <div>
       <div className="options">
-        {options.map((option) => (
-          <div
-            className={`option ${activeOptionId === option.id ? "active" : ""}`}
-            key={option.id}
-            style={{ "--optionBackground": `url(${option.backgroundImage})` }}
-            onClick={() => handleOptionClick(option.id)}
-          >
+      {options.map((option) => (
+  <div
+    className={`option ${activeOptionId === option.id ? "active" : ""}`}
+    key={option.id}
+    style={{ "--optionBackground": `url(${option.backgroundImage})` }}
+    onClick={() => handleOptionClick(option.id)}
+  >
             <Canvas>
               <Suspense fallback={null}>
                 <ambientLight intensity={1.5} />
