@@ -8,8 +8,8 @@ from support import send_sms_message, send_email
 from utils import draw_delaunay, get_combined_emotion, generate_color_gradient
 
 
-settings_draw = 'tri'  # 'tri', 'dot', or 'none'
-preferred_communicaation = 'sms'  # 'email' or 'sms' or 'none'
+settings_draw = 'dot'  # 'tri', 'dot', or 'none'
+preferred_communicaation = 'none'  # 'email' or 'sms' or 'none'
 quiet_model = False
 emotion_counter_threshold = 30
 
@@ -39,23 +39,6 @@ while video.isOpened():
     for x, y, w, h in faces:
         image = cv2.rectangle(frame, (x, y), (x + w, y + h), (89, 2, 236), 1)
 
-        if settings_draw == 'tri':
-            rect = dlib.rectangle(int(x), int(y), int(x + w), int(y + h))
-            shape = predictor(gray, rect)
-            points = np.array([[p.x, p.y] for p in shape.parts()])
-            subdiv = Delaunay(points)
-            triangleList = subdiv.simplices.copy()
-            triangle_colors = generate_color_gradient(len(triangleList), np.array([134, 255, 162]), np.array([214, 64, 22]))
-            draw_delaunay(frame, points, triangleList, triangle_colors)
-        elif settings_draw == 'dot':
-            dlib_rects = [dlib.rectangle(int(x), int(y), int(x + w), int(y + h)) for (x, y, w, h) in faces]
-            dot_colors = generate_color_gradient(68, np.array([134, 255, 162]), np.array([214, 64, 22]))
-            for rect in dlib_rects:
-                shape = predictor(gray, rect)
-                for i in range(0, 68):  # total 68 landmarks
-                    color = tuple(map(int, dot_colors[i]))
-                    cv2.circle(frame, (shape.part(i).x, shape.part(i).y), 3, color, -1)
-
         try:
             # face_frame = frame[y:y + h, x:x + w]
             # analyze = DeepFace.analyze(face_frame, actions=['emotion'])
@@ -79,6 +62,23 @@ while video.isOpened():
             # cv2.putText(image, "Neutral", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (224, 77, 176), 2)
             print(f'Could not find your face: {e}')
             emotion_counter -= 0.01
+
+        if settings_draw == 'tri':
+            rect = dlib.rectangle(int(x), int(y), int(x + w), int(y + h))
+            shape = predictor(gray, rect)
+            points = np.array([[p.x, p.y] for p in shape.parts()])
+            subdiv = Delaunay(points)
+            triangleList = subdiv.simplices.copy()
+            triangle_colors = generate_color_gradient(len(triangleList), np.array([134, 255, 162]), np.array([214, 64, 22]))
+            draw_delaunay(frame, points, triangleList, triangle_colors)
+        elif settings_draw == 'dot':
+            dlib_rects = [dlib.rectangle(int(x), int(y), int(x + w), int(y + h)) for (x, y, w, h) in faces]
+            dot_colors = generate_color_gradient(68, np.array([134, 255, 162]), np.array([214, 64, 22]))
+            for rect in dlib_rects:
+                shape = predictor(gray, rect)
+                for i in range(0, 68):  # total 68 landmarks
+                    color = tuple(map(int, dot_colors[i]))
+                    cv2.circle(frame, (shape.part(i).x, shape.part(i).y), 3, color, -1)
 
     cv2.imshow('video', frame)
 
