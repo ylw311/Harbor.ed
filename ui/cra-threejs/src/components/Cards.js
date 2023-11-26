@@ -91,14 +91,15 @@ const Card = () => {
 
   return (
     <div>
+    <div className="flex justify-center items-center w-auto">
       <div className="options">
-      {options.map((option) => (
-  <div
-    className={`option ${activeOptionId === option.id ? "active" : ""}`}
-    key={option.id}
-    style={{ "--optionBackground": `url(${option.backgroundImage})` }}
-    onClick={() => handleOptionClick(option.id)}
-  >
+        {options.map((option) => (
+          <div
+            className={`option ${activeOptionId === option.id ? "active" : ""}`}
+            key={option.id}
+            style={{ "--optionBackground": `url(${option.backgroundImage})` }}
+            onClick={() => handleOptionClick(option.id)}
+          >
             <Canvas>
               <Suspense fallback={null}>
                 <ambientLight intensity={1.5} />
@@ -136,8 +137,8 @@ const Card = () => {
           </div>
         ))}
       </div>
-
-      <button className="custom-btn btn-6" onClick={handleButtonClick}>
+    </div>
+    <button className="custom-btn btn-6" onClick={handleButtonClick}>
         <span>Confirm</span>
       </button>
     </div>

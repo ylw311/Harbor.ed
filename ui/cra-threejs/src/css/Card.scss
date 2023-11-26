@@ -10,10 +10,10 @@ body {
    
    font-family: 'Roboto', sans-serif;
    transition:.25s;
-//    @include dark {
-//       background: #232223;
-//       color:white;
-//    }
+   // @include dark {
+   //    background: #232223;
+   //    color:white;
+   // }
 
    
    .credit {
@@ -30,7 +30,7 @@ body {
       overflow:hidden;
 
       min-width:600px;
-      max-width: none;;
+      max-width: none;
       width:calc(100% - 50px);
       
       height:400px;
@@ -47,8 +47,8 @@ body {
       .option {
          position: relative;
          overflow:hidden;
-         transform:scale(0.9);
-         transition: transform 0.5s ease;
+         // transform:scale(0.9);
+         // transition: transform 0.5s ease;
          
          min-width:60px;
          margin:10px;
@@ -69,9 +69,9 @@ body {
          }
          &.active {
             flex-grow:10000;
-            transform:scale(1);
+            // transform:scale(1);
             
-            max-width:600px;
+            // max-width:600px;
             margin:0px;
             border-radius:40px;
             
