@@ -9,7 +9,11 @@ COHERE_API_KEY = os.environ["COHERE_API_KEY"]
 # Set Cohere Model
 # COHERE_MODEL = "instruct"
 COHERE_MODEL = "gptd-instruct-tft"
-COHERE_EMBEDDINGS = "embed-english-light-v3.0"
+COHERE_EMBEDDINGS = "embed-english-v2.0"
+# COHERE_EMBEDDINGS = "embed-english-v3.0"
+# TODO:
+INPUT_TYPE = "search_document"
+# https://txt.cohere.com/introducing-embed-v3/
 TEMPERATURE = 0.75
 
 # MONGO
@@ -22,5 +26,6 @@ SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_KEY")
 
 # Chunking
-CHUNK_SIZE = 1000
-CHUNK_OVERLAP = 150
+CHUNK_SIZE = 500
+# CHUNK_SIZE = 100
+CHUNK_OVERLAP = 0
