@@ -1,4 +1,5 @@
 from infobip_channels.sms.channel import SMSChannel
+from infobip_channels.email.channel import EmailChannel
 from config.settings import INFOBIP_API_KEY, INFOBIP_API_BASE_URL, \
     INFOBIP_SMS_RECIPIENT, INFOBIP_EMAIL_SENDER, INFOBIP_EMAIL_RECIPIENT
 import requests
@@ -40,9 +41,9 @@ def send_email(attachment_path):
 
     form_data = {
         "from": INFOBIP_EMAIL_SENDER,
-        "to": INFOBIP_EMAIL_RECIPIENT,
+        "to": [ INFOBIP_EMAIL_RECIPIENT ],
         "subject": "Please feel better",
-        "text": "Please"
+        "html": "Please" # text
     }
 
     headers = {
@@ -60,6 +61,23 @@ def send_email(attachment_path):
         response = requests.post(base_url + "/email/3/send", data=form_data, headers=headers)
         print("Status Code:", response.status_code)
         print(response.json())
+
+
+def send_email_sdk():
+    channel = EmailChannel.from_auth_params({
+            "base_url": INFOBIP_API_BASE_URL,
+            "api_key": INFOBIP_API_KEY
+        }
+    )
+
+    email_response = channel.send_email_message({
+        "from": INFOBIP_EMAIL_SENDER,
+        "to": INFOBIP_EMAIL_RECIPIENT,
+        "subject": "Please feel better",
+        "text": "Testing"
+    })
+
+    print("Email sent: ", email_response)
 
 
 send_email("attachment.png")
