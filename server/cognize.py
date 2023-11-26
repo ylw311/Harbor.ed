@@ -8,7 +8,7 @@ from support import send_sms_message, send_email
 from utils import draw_delaunay, get_combined_emotion, generate_color_gradient
 
 
-settings_draw = 'none'  # 'tri', 'dot', or 'none'
+settings_draw = 'tri'  # 'tri', 'dot', or 'none'
 preferred_communicaation = 'sms'  # 'email' or 'sms' or 'none'
 quiet_model = False
 emotion_counter_threshold = 15
