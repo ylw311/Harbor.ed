@@ -15,11 +15,11 @@ dependencies:
     - cohere
     - langchain==0.0.325
     - langsmith
+    - supabase
     # python -c "import pymongo; print(pymongo.version); print(pymongo.has_c())"
-    - pymongo==4.5.0
+    #- pymongo==4.5.0
     - unicorn>=0.23.2
     - pydantic
-    - dotenv
     - sse_starlette
     - httpcore
     - ipykernel
