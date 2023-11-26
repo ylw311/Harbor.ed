@@ -2,6 +2,68 @@ import React, { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
+export function ModelClownFish(props) {
+  const group = useRef();
+  const { nodes, materials, animations } = useGLTF("/models/Clownfish.glb");
+  const { actions } = useAnimations(animations, group);
+  useEffect(() => {
+    // Play the 'Swimming_Normal' animation which is the 6th animation (index 5)
+    if (actions && animations[5]) {
+      const swimAction = actions[animations[5].name];
+      if (swimAction) {
+        swimAction.play();
+      }
+    }
+  }, [actions, animations]);
+
+  useFrame(() => {
+    if (group.current) {
+      group.current.rotation.y += 0.003; // This will rotate the model around the y-axis
+    }
+  });
+  return (
+    <group ref={group} {...props} dispose={null}>
+      <group name="Root_Scene">
+        <group name="RootNode">
+          <group
+            name="Fish_Armature"
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={100}
+          >
+            <primitive object={nodes.Main1} />
+          </group>
+          <group name="Clownfish" rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+            <skinnedMesh
+              name="Clownfish_1"
+              geometry={nodes.Clownfish_1.geometry}
+              material={materials.Clownfish_Main}
+              skeleton={nodes.Clownfish_1.skeleton}
+            />
+            <skinnedMesh
+              name="Clownfish_2"
+              geometry={nodes.Clownfish_2.geometry}
+              material={materials.Clownfish_Dark}
+              skeleton={nodes.Clownfish_2.skeleton}
+            />
+            <skinnedMesh
+              name="Clownfish_3"
+              geometry={nodes.Clownfish_3.geometry}
+              material={materials.Eyes}
+              skeleton={nodes.Clownfish_3.skeleton}
+            />
+            <skinnedMesh
+              name="Clownfish_4"
+              geometry={nodes.Clownfish_4.geometry}
+              material={materials.Clownfish_Light}
+              skeleton={nodes.Clownfish_4.skeleton}
+            />
+          </group>
+        </group>
+      </group>
+    </group>
+  );
+}
+
 export function ModelKoi(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/models/Koi.glb");
