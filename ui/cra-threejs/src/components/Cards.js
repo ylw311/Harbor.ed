@@ -34,27 +34,7 @@ const Card = () => {
         subText: "Omuke trughte a otufta",
         backgroundImage: "https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg"
       },
-      {
-        id: 5,
-        icon: faSoccerBall,
-        mainText: "Rizzard",
-        subText: "Omuke trughte a otufta",
-        backgroundImage: "https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg"
-      },
-      {
-        id: 6,
-        icon: faSoccerBall,
-        mainText: "Rizzard",
-        subText: "Omuke trughte a otufta",
-        backgroundImage: "https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg"
-      },
-      {
-        id: 7,
-        icon: faSoccerBall,
-        mainText: "Rizzard",
-        subText: "Omuke trughte a otufta",
-        backgroundImage: "https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg"
-      }
+     
     // ...add other options
   ];
 
