@@ -1,8 +1,9 @@
 import os
 
-from langchain.chat_models import ChatOpenAI
+# from langchain.chat_models import ChatOpenAI
+from langchain.llms import Cohere
 from langchain.document_loaders import PyPDFLoader
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import CohereEmbeddings
 from langchain.prompts import ChatPromptTemplate
 from langchain.pydantic_v1 import BaseModel
 from langchain.schema.output_parser import StrOutputParser
@@ -20,6 +21,12 @@ if os.environ.get("MONGO_URI", None) is None:
     raise Exception("Missing `MONGO_URI` environment variable.")
 MONGO_URI = os.environ["MONGO_URI"]
 
+# Set Cohere API
+if os.environ.get("COHERE_API_KEY", None) is None:
+    raise Exception("Missing `COHERE_API_KEY` environment variable.")
+COHERE_API_KEY = os.environ["COHERE_API_KEY"]
+
+# MONGO
 DB_NAME = os.environ.get("DB_NAME")
 COLLECTION_NAME = os.environ.get("COLLECTION_NAME")
 ATLAS_VECTOR_SEARCH_INDEX_NAME = "default"
@@ -32,7 +39,7 @@ MONGODB_COLLECTION = db[COLLECTION_NAME]
 vectorstore = MongoDBAtlasVectorSearch.from_connection_string(
     MONGO_URI,
     DB_NAME + "." + COLLECTION_NAME,
-    OpenAIEmbeddings(disallowed_special=()),
+    CohereEmbeddings(disallowed_special=()),
     index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
 )
 retriever = vectorstore.as_retriever()
@@ -45,7 +52,7 @@ Question: {question}
 prompt = ChatPromptTemplate.from_template(template)
 
 # RAG
-model = ChatOpenAI()
+model = Cohere(cohere_api_key=COHERE_API_KEY)
 chain = (
     RunnableParallel({"context": retriever, "question": RunnablePassthrough()})
     | prompt
@@ -73,7 +80,7 @@ def _ingest(url: str) -> dict:
     # Insert the documents in MongoDB Atlas Vector Search
     _ = MongoDBAtlasVectorSearch.from_documents(
         documents=docs,
-        embedding=OpenAIEmbeddings(disallowed_special=()),
+        embedding=CohereEmbeddings(disallowed_special=()),
         collection=MONGODB_COLLECTION,
         index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
     )
