@@ -1,6 +1,15 @@
+## Conda
+```
+# If using Nix, use shell.nix
+nix-shell
+
+# Choose interpreter found at $(pwd)/.mamba/envs/langchain/bin/python3.9
+# for VSC, etc...
+```
 
 ## Cohere
 - https://api.python.langchain.com/en/latest/embeddings/langchain.embeddings.cohere.CohereEmbeddings.html
+- https://api.python.langchain.com/en/latest/vectorstores/langchain.vectorstores.supabase.SupabaseVectorStore.html
 
 ## Supabase
 - https://supabase.com/docs/guides/api#api-url-and-keys
