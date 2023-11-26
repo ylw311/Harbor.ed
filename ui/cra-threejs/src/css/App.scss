@@ -156,7 +156,8 @@ body,
         border-radius: $br;
         padding: 1rem;
         margin-bottom: $inner-margin;
-        max-width: 60%;
+        min-width: 100px;
+        max-width: 90%;
         overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-word;
