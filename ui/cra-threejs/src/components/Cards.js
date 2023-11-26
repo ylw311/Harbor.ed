@@ -9,32 +9,31 @@ const Card = () => {
     {
       id: 1,
       icon: faWalking,
-      mainText: "Lionfish - The Resilience Advisor",
-      subText: "Omuke trughte a otufta",
+      mainText: "Koi - Journatlist",
+      subText: "Wise - Good for rants",
       backgroundImage: "https://66.media.tumblr.com/6fb397d822f4f9f4596dff2085b18f2e/tumblr_nzsvb4p6xS1qho82wo1_1280.jpg"
     },
     {
       id: 2,
       icon: faSnowflake,
-      mainText: "Lindor",
-      subText: "Omuke trughte a otufta",
+      mainText: "Clownfish - Joyful Distraction",
+      subText: "Tells corny jokes, but a good friend",
       backgroundImage: "https://66.media.tumblr.com/8b69cdde47aa952e4176b4200052abf4/tumblr_o51p7mFFF21qho82wo1_1280.jpg"
     },
     {
         id: 3,
         icon: faTree,
-        mainText: "Nathene",
-        subText: "Omuke trughte a otufta",
+        mainText: "Swordfish - Mentor",
+        subText: "Sharp and goal-oriented.",
         backgroundImage: "https://66.media.tumblr.com/5516a22e0cdacaa85311ec3f8fd1e9ef/tumblr_o45jwvdsL11qho82wo1_1280.jpg"
     },
     {
         id: 4,
         icon: faSoccerBall,
-        mainText: "Rizzard",
-        subText: "Omuke trughte a otufta",
+        mainText: "Red Snapper - Educator",
+        subText: "Knowledgeable and informative",
         backgroundImage: "https://66.media.tumblr.com/f19901f50b79604839ca761cd6d74748/tumblr_o65rohhkQL1qho82wo1_1280.jpg"
       },
-     
     // ...add other options
   ];
 
