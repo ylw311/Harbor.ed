@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/Card.scss';
+import '../css/buttons.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWalking, faSnowflake, faTree, faSoccerBall } from '@fortawesome/free-solid-svg-icons';
 
 
 const Card = () => {
+
+  
+
+
   const options = [
     {
       id: 1,
@@ -37,12 +43,16 @@ const Card = () => {
     // ...add other options
   ];
 
-  // State to track the active option ID
-  const [activeOptionId, setActiveOptionId] = useState(options[0].id);
 
-  // Event handler for click
+  const [activeOptionId, setActiveOptionId] = useState(options[0].id);
+  const navigate = useNavigate(); // Direct use of the hook
+
   const handleOptionClick = (id) => {
     setActiveOptionId(id);
+  };
+
+  const handleButtonClick = () => {
+    navigate('/chat'); // Use navigate function directly
   };
 
   return (
@@ -72,8 +82,20 @@ const Card = () => {
           </div>
         ))}
       </div>
+
+      <button className="custom-btn btn-6" onClick={handleButtonClick}>
+        <span>Confirm</span>
+      </button>
+
     </div>
   );
 };
 
-export default Card;
+function withNavigate(Component) {
+  return props => {
+    const navigate = useNavigate();
+    return <Component {...props} navigate={navigate} />;
+  };
+}
+
+export default withNavigate(Card);

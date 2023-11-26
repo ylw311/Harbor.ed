@@ -1,12 +1,12 @@
 $optionDefaultColours: #ED5565,#FC6E51,#FFCE54,#2ECC71,#5D9CEC,#AC92EC;
 
 body {
-   display:flex;
+   // display:flex;
    flex-direction:row;
    justify-content:center;
    align-items:center;
-   overflow:hidden;
-   height:100vh;
+   // overflow:hidden;
+   // height:100vh;
    
    font-family: 'Roboto', sans-serif;
    transition:.25s;
