@@ -103,7 +103,7 @@ const Card = () => {
               style={{ "--optionBackground": `url(${option.backgroundImage})` }}
               onClick={() => handleOptionClick(option.id)}
             >
-              <Canvas>
+              <Canvas camera={{ position: [10, 10, 10], fov: 25 }}>
                 <Suspense fallback={null}>
                   <ambientLight intensity={1.5} />
                   <spotLight
@@ -125,10 +125,6 @@ const Card = () => {
               </Canvas>
               <div className="shadow"></div>
               <div className="label">
-                {/* <div className="icon">
-                <i className={option.iconClass}></i>
-              </div> */}
-                {/* TODO idk why tf this doesnt work */}
                 <div className="icon">
                   <FontAwesomeIcon icon={option.icon} />
                 </div>
