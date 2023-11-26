@@ -1,9 +1,12 @@
+import random
+
 from infobip_channels.sms.channel import SMSChannel
 from infobip_channels.email.channel import EmailChannel
 from config.settings import INFOBIP_API_KEY, INFOBIP_API_BASE_URL, \
     INFOBIP_SMS_RECIPIENT, INFOBIP_EMAIL_SENDER, INFOBIP_EMAIL_RECIPIENT
 import requests
 import os
+from config.comfort import dic
 
 
 def send_sms_message():
@@ -19,7 +22,8 @@ def send_sms_message():
             "messages": [
                 {
                     "destinations": [{"to": INFOBIP_SMS_RECIPIENT}],
-                    "text": "Please feel better.",
+                    "text": random.choice(dic)
+                    # "text": "please feel bettttt"
                 }
             ]
         }
@@ -43,7 +47,7 @@ def send_email(attachment_path):
         "from": INFOBIP_EMAIL_SENDER,
         "to": [ INFOBIP_EMAIL_RECIPIENT ],
         "subject": "Please feel better",
-        "html": "Please" # text
+        "html": random.choice(dic) # text
     }
 
     headers = {
@@ -74,10 +78,10 @@ def send_email_sdk():
         "from": INFOBIP_EMAIL_SENDER,
         "to": INFOBIP_EMAIL_RECIPIENT,
         "subject": "Please feel better",
-        "text": "Testing"
+        "text": random.choice(dic)
     })
 
     print("Email sent: ", email_response)
 
 
-send_email("attachment.png")
+# send_email("attachment.png")
