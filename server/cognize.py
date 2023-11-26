@@ -11,10 +11,12 @@ from utils import draw_delaunay, get_combined_emotion, generate_color_gradient
 settings_draw = 'dot'  # 'tri', 'dot', or 'none'
 preferred_communicaation = 'none'  # 'email' or 'sms' or 'none'
 quiet_model = False
-emotion_counter_threshold = 30
+emotion_counter_threshold = 15
 
-sad_emotions = ['Sad', 'Frustrated', 'Despondent', 'Bittersweet', 'Melancholic', 'Angry', 'Outraged', 'Indignant', 'Bitter', 'Sarcastic']
-emotion_counter = 0
+sad_emotions = ['Sad', 'Frustrated', 'Despondent', 'Bittersweet', 'Melancholic']
+angry_emotions = ['Angry', 'Outraged', 'Indignant', 'Bitter', 'Sarcastic']
+sad_emotion_counter = 0
+angry_emotion_counter = 0
 
 model_used = "haarcascade_frontalface_default.xml" # or "haarcascade_frontalface_alt.xml"
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + model_used)
@@ -49,19 +51,31 @@ while video.isOpened():
             print(analyze['dominant_emotion'])
 
             if combined_emotion in sad_emotions:
-                emotion_counter += 1
-                if emotion_counter >= emotion_counter_threshold:
+                sad_emotion_counter += 1
+                if sad_emotion_counter >= emotion_counter_threshold:
                     if preferred_communicaation == 'sms':
                         send_sms_message()
                     elif preferred_communicaation == 'email':
                         send_email("attachment.png")
-                    emotion_counter = 0  # reset the counter after sending SMS
+                    sad_emotion_counter = 0  # reset the counter after sending SMS
+                    angry_emotion_counter = 0
+            elif combined_emotion in angry_emotions:
+                angry_emotion_counter += 1
+                if angry_emotion_counter >= emotion_counter_threshold:
+                    if preferred_communicaation == 'sms':
+                        send_sms_message()
+                    elif preferred_communicaation == 'email':
+                        send_email("attachment.png")
+                    sad_emotion_counter = 0
+                    angry_emotion_counter = 0
             else:
-                emotion_counter -= 0.05  # decrease counter if the emotion is not sad or angry
+                sad_emotion_counter -= 0.05  # decrease counter if the emotion is not sad or angry
+                angry_emotion_counter -= 0.05
         except Exception as e:
             # cv2.putText(image, "Neutral", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (224, 77, 176), 2)
             print(f'Could not find your face: {e}')
-            emotion_counter -= 0.01
+            sad_emotion_counter -= 0.01
+            angry_emotion_counter -= 0.01
 
         if settings_draw == 'tri':
             rect = dlib.rectangle(int(x), int(y), int(x + w), int(y + h))
