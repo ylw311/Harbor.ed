@@ -5,7 +5,7 @@ import '../css/App.scss';
 const data = {
   headerText: "Hi ✨",
   pText: "",
-  p2Text: "Made with React, Dialogflow..(add more here)",
+  p2Text: "",
   userMessages: [],
   botMessages: [],
   botGreeting: "oh hi! nice day today?",
