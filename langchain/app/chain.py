@@ -16,30 +16,25 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import MongoDBAtlasVectorSearch
 from pymongo import MongoClient
 
-# Set DB
-if os.environ.get("MONGO_URI", None) is None:
-    raise Exception("Missing `MONGO_URI` environment variable.")
-MONGO_URI = os.environ["MONGO_URI"]
+from env import MONGO_URI, COHERE_API_KEY, DB_NAME, COLLECTION_NAME
 
-# Set Cohere API
-if os.environ.get("COHERE_API_KEY", None) is None:
-    raise Exception("Missing `COHERE_API_KEY` environment variable.")
-COHERE_API_KEY = os.environ["COHERE_API_KEY"]
+class Question(BaseModel):
+    __root__: str
 
-# MONGO
-DB_NAME = os.environ.get("DB_NAME")
-COLLECTION_NAME = os.environ.get("COLLECTION_NAME")
-ATLAS_VECTOR_SEARCH_INDEX_NAME = "default"
-
+# Mongo Atlas Vector Search
+ATLAS_VECTOR_SEARCH_INDEX_NAME = "default" # indexer configured on Atlas
 client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 MONGODB_COLLECTION = db[COLLECTION_NAME]
+
+# Embedder
+embedder = CohereEmbeddings(cohere_api_key=COHERE_API_KEY)
 
 # Read from MongoDB Atlas Vector Search
 vectorstore = MongoDBAtlasVectorSearch.from_connection_string(
     MONGO_URI,
     DB_NAME + "." + COLLECTION_NAME,
-    CohereEmbeddings(disallowed_special=()),
+    embedder,
     index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
 )
 retriever = vectorstore.as_retriever()
@@ -59,32 +54,46 @@ chain = (
     | model
     | StrOutputParser()
 )
-
-
-# Add typing for input
-class Question(BaseModel):
-    __root__: str
-
-
 chain = chain.with_types(input_type=Question)
 
-
 def _ingest(url: str) -> dict:
+    # Load docs
     loader = PyPDFLoader(url)
     data = loader.load()
 
     # Split docs
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=0)
+    print("Splitting documents")
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
     docs = text_splitter.split_documents(data)
 
     # Insert the documents in MongoDB Atlas Vector Search
+    print("Inserting documents in MongoDB Atlas Vector Search")
     _ = MongoDBAtlasVectorSearch.from_documents(
         documents=docs,
-        embedding=CohereEmbeddings(disallowed_special=()),
+        embedding=embedder,
         collection=MONGODB_COLLECTION,
         index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
     )
+
     return {}
 
-
 ingest = RunnableLambda(_ingest)
+
+
+# query = "What were the compute requirements for training GPT 4"
+# results = vector_search.similarity_search(query)
+
+# print(results[0].page_content)
+
+# query = "gpt-4"
+# results = vector_search.similarity_search(
+#     query=query,
+#     k=20,
+# )
+
+# # Display results
+# #print(dict(results[0].metadata).keys())
+# for result in results:
+#     print( result)
+
+

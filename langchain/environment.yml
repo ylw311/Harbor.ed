@@ -4,16 +4,25 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python>=3.11
-  - langchain
+  - python=3.9
   - tiktoken
-  - pymongo
   - fastapi
+  - pypdf
+  - pymongo
   # pip dependencies
   - pip:
-    - unicorn>=0.23.2
     - langserve
+    - cohere
+    - langchain==0.0.325
+    - langsmith
+    # python -c "import pymongo; print(pymongo.version); print(pymongo.has_c())"
+    - pymongo==4.5.0
+    - unicorn>=0.23.2
     - pydantic
+    - dotenv
+    - sse_starlette
+    - httpcore
+    - ipykernel
 
 dev_dependencies:
   - langchain-cli>=0.0.15
