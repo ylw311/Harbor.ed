@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../css/App.scss';
@@ -207,9 +206,9 @@ class Main extends React.Component {
 
   render() {
 
-    const readMoreButton = (
-      <button className="custom-btn btn-6"><span>Read More</span></button>
-    );
+    // const readMoreButton = (
+    //   <button className="custom-btn btn-6"><span></span></button>
+    // );
 
     
     return (
@@ -218,7 +217,7 @@ class Main extends React.Component {
 
         <Header
           headerText={this.state.headerText}
-          buttonElement={readMoreButton}
+          // buttonElement={readMoreButton}
           pText={this.state.pText}
           p2Text={this.state.p2Text}
         />

@@ -1,19 +1,19 @@
 $optionDefaultColours: #ED5565,#FC6E51,#FFCE54,#2ECC71,#5D9CEC,#AC92EC;
 
 body {
-   display:flex;
+   // display:flex;
    flex-direction:row;
    justify-content:center;
    align-items:center;
-   overflow:hidden;
-   height:100vh;
+   // overflow:hidden;
+   // height:100vh;
    
    font-family: 'Roboto', sans-serif;
    transition:.25s;
-//    @include dark {
-//       background: #232223;
-//       color:white;
-//    }
+   // @include dark {
+   //    background: #232223;
+   //    color:white;
+   // }
 
    
    .credit {
@@ -30,7 +30,7 @@ body {
       overflow:hidden;
 
       min-width:600px;
-      max-width: none;;
+      max-width: none;
       width:calc(100% - 50px);
       
       height:400px;
@@ -47,7 +47,9 @@ body {
       .option {
          position: relative;
          overflow:hidden;
-
+         // transform:scale(0.9);
+         // transition: transform 0.5s ease;
+         
          min-width:60px;
          margin:10px;
          //border:0px solid --defaultColor;
@@ -67,9 +69,9 @@ body {
          }
          &.active {
             flex-grow:10000;
-            transform:scale(1);
+            // transform:scale(1);
             
-            max-width:600px;
+            // max-width:600px;
             margin:0px;
             border-radius:40px;
             
@@ -85,9 +87,9 @@ body {
                   opacity:1;
                }
             }
-            /*&:active {
-               transform:scale(0.9);
-            }*/
+            // &:active {
+            //    transform:scale(0.9);
+            // }
          }
          &:not(.active) {
             flex-grow:1;
