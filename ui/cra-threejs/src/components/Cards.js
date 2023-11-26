@@ -91,7 +91,7 @@ const Card = () => {
 
   return (
     <div>
-    <div className="flex justify-center items-center w-auto">
+    <div className="flex justify-center items-center">
       <div className="options">
         {options.map((option) => (
           <div
