@@ -9,6 +9,12 @@ app = FastAPI()
 async def redirect_root_to_docs():
     return RedirectResponse("/docs")
 
+# Import rag-mongo chain and ingest
+from rag_mongo import chain as rag_mongo_chain
+from rag_mongo import ingest as rag_mongo_ingest
+
+add_routes(app, rag_mongo_chain, path="/rag-mongo")
+add_routes(app, rag_mongo_ingest, path="/rag-mongo-ingest")
 
 # Edit this to add the chain you want to add
 add_routes(app, NotImplemented)
