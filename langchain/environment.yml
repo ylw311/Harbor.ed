@@ -1,0 +1,19 @@
+# Conda Environement
+name: langchain
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.11
+  - langchain
+  - tiktoken
+  - pymongo
+  - fastapi
+  # pip dependencies
+  - pip:
+    - unicorn>=0.23.2
+    - langserve
+    - pydantic
+
+dev_dependencies:
+  - langchain-cli>=0.0.15

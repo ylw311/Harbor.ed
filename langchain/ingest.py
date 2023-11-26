@@ -1,7 +1,7 @@
 import os
 
 from langchain.document_loaders import PyPDFLoader
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import CohereEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import MongoDBAtlasVectorSearch
 from pymongo import MongoClient
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     # Insert the documents in MongoDB Atlas Vector Search
     _ = MongoDBAtlasVectorSearch.from_documents(
         documents=docs,
-        embedding=OpenAIEmbeddings(disallowed_special=()),
+        embedding=CohereEmbeddings(disallowed_special=()),
         collection=MONGODB_COLLECTION,
         index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
     )

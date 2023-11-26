@@ -1,19 +1,55 @@
-import React from "react";
-// import heartMessageImage from "./heartmessagetransparent.png";
+import React, { useEffect, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import {
+  OrbitControls,
+  useGLTF,
+  useAnimations,
+  Environment,
+} from "@react-three/drei";
+import { Suspense } from "react";
+import { ModelBlob } from "./MyFish";
+import { ModelKoi } from "./MyFish";
+import { ModelLionFish } from "./MyFish";
+import { ModelPuffer } from "./MyFish";
+import { ModelSnapper } from "./MyFish";
+import { ModelSwordFish } from "./MyFish";
 
 function About() {
+  // const cameraRef = useRef();
+
+  // useEffect(() => {
+  //   // Adjust the camera using the cameraRef
+  //   if (cameraRef.current) {
+  //     cameraRef.current.position.set(10, -10, 10);
+  //     cameraRef.current.lookAt(new THREE.Vector3(0, 0, 0));
+  //   }
+  // }, []);
+
   return (
-    <div className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 max-w-sm mx-auto mt-24">
-      {/* <img
-        src={heartMessageImage}
-        alt="Clown Fish"
-        className="absolute inset-0 h-full w-full object-cover"
-      /> */}
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-      <h3 className="z-10 mt-3 text-3xl font-bold text-white">Clown Fish</h3>
-      <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-        The Joyful Distraction
-      </div>
+    <div style={{ width: "100%", height: "75vh" }}>
+      <Canvas>
+        <Suspense fallback={null}>
+          <ambientLight intensity={0.9} />
+          <spotLight
+            intensity={4}
+            angle={0.1}
+            penumbra={1}
+            position={[10, 15, 10]}
+            castShadow
+          />
+          <Environment preset="sunset" />
+          {/* <ModelKoi /> */}
+          {/* <ModelLionFish /> */}
+          {/* <ModelPuffer /> */}
+          <ModelSwordFish />
+          <OrbitControls
+            enablePan={true}
+            enableZoom={true}
+            enableRotate={true}
+            maxPolarAngle={Math.PI / 2}
+          />
+        </Suspense>
+      </Canvas>
     </div>
   );
 }
