@@ -13,16 +13,21 @@ dependencies:
   - pip:
     - langserve
     - cohere
-    - langchain==0.0.325
+    - weaviate-client
+    # - langchain==0.0.314
+    - langchain==0.0.340
     - langsmith
-    - supabase
+    #- supabase==1.2.0
     # python -c "import pymongo; print(pymongo.version); print(pymongo.has_c())"
     #- pymongo==4.5.0
     - unicorn>=0.23.2
-    - pydantic
+    - pydantic==1.10.13
     - sse_starlette
     - httpcore
     - ipykernel
+    - lxml
+    - bs4
+    - tqdm
 
 dev_dependencies:
   - langchain-cli>=0.0.15

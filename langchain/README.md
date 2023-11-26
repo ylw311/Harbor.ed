@@ -8,8 +8,10 @@ nix-shell
 ```
 
 ## Cohere
+- https://api.python.langchain.com/en/latest/llms/langchain.llms.cohere.Cohere.html
 - https://api.python.langchain.com/en/latest/embeddings/langchain.embeddings.cohere.CohereEmbeddings.html
 - https://api.python.langchain.com/en/latest/vectorstores/langchain.vectorstores.supabase.SupabaseVectorStore.html
+- https://txt.cohere.com/introducing-embed-v3/
 
 ## Supabase
 - https://supabase.com/docs/guides/api#api-url-and-keys
