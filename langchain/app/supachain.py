@@ -18,15 +18,18 @@ from supabase.client import Client, create_client
 
 from env import COHERE_API_KEY, COHERE_MODEL, COHERE_EMBEDDINGS, TEMPERATURE, SUPABASE_URL, SUPABASE_SERVICE_KEY, CHUNK_SIZE, CHUNK_OVERLAP
 
+
 class Question(BaseModel):
     __root__: str
+
 
 supabase_client: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 TABLE_NAME = "documents"
 FUNC_NAME = "match_documents"
 
 # Embedder
-embeddings = CohereEmbeddings(cohere_api_key=COHERE_API_KEY, model = COHERE_EMBEDDINGS, truncate="END")
+embeddings = CohereEmbeddings(
+    cohere_api_key=COHERE_API_KEY, model=COHERE_EMBEDDINGS, truncate="END")
 
 # Read from Supabase
 vectorstore = SupabaseVectorStore(
@@ -45,7 +48,8 @@ Question: {question}
 prompt = ChatPromptTemplate.from_template(template)
 
 # RAG
-model = Cohere(cohere_api_key=COHERE_API_KEY, model=COHERE_MODEL, temperature=TEMPERATURE)
+model = Cohere(cohere_api_key=COHERE_API_KEY,
+               model=COHERE_MODEL, temperature=TEMPERATURE)
 chain = (
     RunnableParallel({"context": retriever, "question": RunnablePassthrough()})
     | prompt
@@ -53,6 +57,7 @@ chain = (
     | StrOutputParser()
 )
 chain = chain.with_types(input_type=Question)
+
 
 def _ingest(url: str) -> dict:
     # Load docs
@@ -62,7 +67,8 @@ def _ingest(url: str) -> dict:
 
     # Split docs
     print("Splitting documents")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
     # text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     docs = text_splitter.split_documents(data)
 
@@ -78,7 +84,9 @@ def _ingest(url: str) -> dict:
 
     return {}
 
+
 ingest = RunnableLambda(_ingest)
+
 
 def _query(query: str, k: int = 20):
     results = retriever.similarity_search(
@@ -87,5 +95,5 @@ def _query(query: str, k: int = 20):
     )
     return results
 
-query = RunnableLambda(_query)
 
+query = RunnableLambda(_query)

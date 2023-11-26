@@ -9,8 +9,8 @@ COHERE_API_KEY = os.environ["COHERE_API_KEY"]
 # Set Cohere Model
 # COHERE_MODEL = "instruct"
 COHERE_MODEL = "gptd-instruct-tft"
-COHERE_EMBEDDINGS="embed-english-light-v3.0"
-TEMPERATURE=0.75
+COHERE_EMBEDDINGS = "embed-english-light-v3.0"
+TEMPERATURE = 0.75
 
 # MONGO
 DB_NAME = os.environ.get("DB_NAME")

@@ -8,6 +8,7 @@ from supachain import chain, ingest, query
 
 app = FastAPI()
 
+
 @app.get("/")
 async def redirect_root_to_docs():
     return RedirectResponse("/docs")
