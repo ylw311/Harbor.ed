@@ -23,6 +23,10 @@ body {
       
       color:inherit;
    }
+
+   .card-container {
+      margin-top: 10%;
+   }
    .options {
       display:flex;
       flex-direction:row;
@@ -50,8 +54,13 @@ body {
          // transform:scale(0.9);
          // transition: transform 0.5s ease;
          
-         min-width:60px;
-         margin:10px;
+         width: 24%; // Set a fixed width for each card
+      margin: 10px;
+      flex-grow: 0;  // Prevent the card from growing
+      flex-shrink: 0; // Prevent the card from shrinking
+
+         // min-width:60px;
+         // margin:10px;
          //border:0px solid --defaultColor;
 
          background:var(--optionBackground, var(--defaultBackground, #E6E9ED));
@@ -68,7 +77,7 @@ body {
             }
          }
          &.active {
-            flex-grow:10000;
+            // flex-grow:10000;
             // transform:scale(1);
             
             // max-width:600px;
@@ -92,7 +101,7 @@ body {
             // }
          }
          &:not(.active) {
-            flex-grow:1;
+            // flex-grow:1;
             
             border-radius:30px;
             .shadow {

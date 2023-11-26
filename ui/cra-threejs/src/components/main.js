@@ -36,6 +36,7 @@ var ChatHeader = props => {
   );
 };
 
+
 var UserInput = props => {
   return (
     <div className="input-container">
@@ -124,13 +125,13 @@ class Main extends React.Component {
       .catch(error => {
         console.log("ERROR:", error);
          this.setState({
-          botMessages: updatedBotMessages.concat('Let\'s pick your character'),
+          botMessages: updatedBotMessages.concat(':)'),
           botLoading: false
         });
         // redirect to character selection
-        setTimeout(() => {
-          this.props.navigate('/character-selection');
-        }, 1000);
+        // setTimeout(() => {
+        //   this.props.navigate('/character-selection');
+        // }, 1000);
       });
   };
 
