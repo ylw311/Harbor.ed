@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "jquery": "^3.7.1",
     "react": "^18.2.0",
+    "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
     "react-parallax": "^3.5.1",
     "react-router-dom": "^6.20.0",
