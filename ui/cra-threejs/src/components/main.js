@@ -86,36 +86,96 @@ class Main extends React.Component {
   }
 
 
+  // updateUserMessages = newMessage => {
+  //   if (!newMessage){
+  //     return;  
+  //   }
+
+  //   var updatedMessages = this.state.userMessages;
+
+  //   var updatedBotMessages = this.state.botMessages;
+
+  //   this.setState({
+  //     userMessages: updatedMessages.concat(newMessage),
+  //     botLoading: true
+  //   });
+
+  //   // placeholder dialogflow api call
+  //   var request = new Request(
+  //     "https://api.dialogflow.com/v1/query?v=20150910&contexts=shop&lang=en&query=" +
+  //       newMessage +
+  //       "&sessionId=12345",
+  //     {
+  //       headers: new Headers({
+  //         Authorization: "Bearer bc13467053ad45feaaa6f23c8bfafa9d"
+  //       })
+  //     }
+  //   );
+
+  //   fetch(request)
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       var botResponse = json.result.fulfillment.speech;
+
+  //       this.setState({
+  //         botMessages: updatedBotMessages.concat(botResponse),
+  //         botLoading: false
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log("ERROR:", error);
+  //        this.setState({
+  //         botMessages: updatedBotMessages.concat(':)'),
+  //         botLoading: false
+  //       });
+  //       // redirect to character selection
+  //       // setTimeout(() => {
+  //       //   this.props.navigate('/character-selection');
+  //       // }, 1000);
+  //     });
+  // };
+
   updateUserMessages = newMessage => {
-    if (!newMessage){
-      return;  
+    if (!newMessage) {
+      return;
     }
-    
-    var updatedMessages = this.state.userMessages;
 
-    var updatedBotMessages = this.state.botMessages;
+    let updatedUserMessages = this.state.userMessages;
+    let updatedBotMessages = this.state.botMessages;
 
+    // adding new user message to the chat history
     this.setState({
-      userMessages: updatedMessages.concat(newMessage),
+      userMessages: updatedUserMessages.concat(newMessage),
       botLoading: true
     });
 
-    // placeholder dialogflow api call
-    var request = new Request(
-      "https://api.dialogflow.com/v1/query?v=20150910&contexts=shop&lang=en&query=" +
-        newMessage +
-        "&sessionId=12345",
-      {
-        headers: new Headers({
-          Authorization: "Bearer bc13467053ad45feaaa6f23c8bfafa9d"
-        })
-      }
-    );
+    // preparing chat history for the API call
+    let chatHistory = updatedUserMessages.map((message, index) => ({
+      agent: updatedBotMessages[index] || "",
+      human: message
+    }));
 
-    fetch(request)
+    // API request body
+    let requestBody = {
+      input: {
+        question: newMessage,
+        chat_history: chatHistory
+      },
+      config: {},
+      kwargs: {}
+    };
+
+    // API call to the custom backend
+    fetch("https://chat-langchain-backend.langchain.dev/chat/invoke", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(requestBody)
+    })
       .then(response => response.json())
-      .then(json => {
-        var botResponse = json.result.fulfillment.speech;
+      .then(data => {
+        let botResponse = data.output || "Sorry, I didn't get that.";
 
         this.setState({
           botMessages: updatedBotMessages.concat(botResponse),
@@ -123,15 +183,11 @@ class Main extends React.Component {
         });
       })
       .catch(error => {
-        console.log("ERROR:", error);
-         this.setState({
-          botMessages: updatedBotMessages.concat(':)'),
+        console.error("Error:", error);
+        this.setState({
+          botMessages: updatedBotMessages.concat("There was an error."),
           botLoading: false
         });
-        // redirect to character selection
-        // setTimeout(() => {
-        //   this.props.navigate('/character-selection');
-        // }, 1000);
       });
   };
 
@@ -147,7 +203,7 @@ class Main extends React.Component {
     var botMessages = this.state.botMessages;
 
     var allMessages = [];
-  
+
     var i = 0;
     for (; i < userMessages.length; i++) {
       if (i === userMessages.length - 1) {
@@ -186,8 +242,8 @@ class Main extends React.Component {
       this.updateUserMessages(userInput);
       event.target.value = "";
     }
-    
-    if (event.target.value?.trim()?.length > 0){
+
+    if (event.target.value?.trim()?.length > 0) {
       event.target.parentElement.style.background = 'rgba(69,58,148,0.6)';
     }
     else {
@@ -211,7 +267,7 @@ class Main extends React.Component {
     //   <button className="custom-btn btn-6"><span></span></button>
     // );
 
-    
+
     return (
       <div className="app-container">
 
@@ -222,9 +278,9 @@ class Main extends React.Component {
           pText={this.state.pText}
           p2Text={this.state.p2Text}
         />
-        
 
-        
+
+
         <div className="chat-container">
           <ChatHeader />
           {this.showMessages()}

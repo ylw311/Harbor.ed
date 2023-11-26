@@ -139,6 +139,7 @@ body,
       }
       .bot-message-container {
         flex: none;
+        max-width: 75%;
         display: flex;
         .bot-avatar {
           background-image: url($avatar-url);
