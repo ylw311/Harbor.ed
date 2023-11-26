@@ -61,7 +61,7 @@ def get_combined_emotion(emotions):
     c_emotion = emotion_combinations.get(dominant_emotion, {}).get(secondary_emotion)
     if c_emotion and secondary_value > threshold:
         return c_emotion
-    elif secondary_value > threshold / 100 and secondary_emotion == 'sad':
+    elif secondary_value > threshold / 20 and secondary_emotion == 'sad':
         return secondary_emotion
 
     return dominant_emotion
