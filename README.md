@@ -1,4 +1,6 @@
-# Harbor.ed
+# Harbor.ed - Hack Western 10 Submission
+### Best use of MongoDB
+<b> Nathan, Linda, Richard, Angela </b>
 
 ## Inspiration
 ✨ In a world that can sometimes feel overwhelmingly negative, we wanted to create an oasis of positivity. The inspiration for *harbor.ed * comes from the calming effect that the ocean and its inhabitants have on many people. As students, we often crave for the need to be cared for, and of course, habored. We envisioned a digital sanctuary where individuals could find comfort and companionship in the form of sea creatures, each with a unique personality designed to uplift and support. Especially to international students who may not have a chance to see their family for months at a time, it is often to feel lonely or sad with no one there to watch out for your feelings - Harbour.ed is your safe space:
