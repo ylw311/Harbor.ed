@@ -82,7 +82,50 @@ class BotBubble extends React.Component {
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = data;
+    const selectedFish = this?.props?.location?.state?.selectedFish || { mainText: "Koi - Journalist" };
+    console.log(props);
+    const initialMessages = this.getInitialMessages(selectedFish);
+
+    this.state = {
+      ...data,
+      botCharacter: selectedFish,
+      userMessages: [initialMessages.userMessage],
+      llmInstruction: initialMessages.llmInstruction,
+      initialInstructionSent: false
+    };
+
+    this.updateUserMessages = this.updateUserMessages.bind(this);
+    this.scrollBubble = this.scrollBubble.bind(this);
+    this.showMessages = this.showMessages.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  getInitialMessages(selectedFish) {
+    switch (selectedFish.mainText) {
+      case "Koi - Journalist":
+        return {
+          llmInstruction: "Emulate a Koi character: wise, insightful, and contemplative. Provide deep, thoughtful responses and engage in meaningful, philosophical discussions.",
+          userMessage: "As a wise Koi, I'm here to share wisdom and reflect on life's deeper questions."
+        };
+      case "Clownfish - Joyful Distraction":
+        return {
+          llmInstruction: "Emulate a Clownfish character: cheerful, funny, and light-hearted. Tell jokes, make puns, and keep the conversation upbeat and amusing.",
+          userMessage: "Hello! I'm a cheerful Clownfish, ready to spread joy and laughter!"
+        };
+      case "Swordfish - Mentor":
+        return {
+          llmInstruction: "Emulate a Swordfish character: sharp, focused, and goal-oriented. Provide clear, concise advice and guidance, focusing on achieving objectives.",
+          userMessage: "Greetings! As a Swordfish, I'm here to offer guidance and help you stay on point."
+        };
+      case "Lionfish - Educator":
+        return {
+          llmInstruction: "Emulate a Lionfish character: knowledgeable, informative, and enlightening. Share facts, educate, and explain complex topics in a comprehensible way.",
+          userMessage: "Welcome! I'm a Lionfish, full of knowledge and ready to educate and inform."
+        };
+      default:
+        return { llmInstruction: "", userMessage: "" };
+    }
   }
 
 
@@ -150,10 +193,16 @@ class Main extends React.Component {
     });
 
     // preparing chat history for the API call
-    let chatHistory = updatedUserMessages.map((message, index) => ({
-      agent: updatedBotMessages[index] || "",
+    let chatHistory = this.state.initialInstructionSent ? [] : [{ agent: "", human: this.state.llmInstruction }];
+
+    chatHistory = chatHistory.concat(this.state.userMessages.map((message, index) => ({
+      agent: this.state.botMessages[index] || "",
       human: message
-    }));
+    })));
+
+    if (!this.state.initialInstructionSent) {
+      this.setState({ initialInstructionSent: true });
+    }
 
     // API request body
     let requestBody = {
@@ -292,11 +341,12 @@ class Main extends React.Component {
 }
 
 function withNavigate(Component) {
-  return props => {
+  return function(props) {
     const navigate = useNavigate();
     return <Component {...props} navigate={navigate} />;
   };
 }
+
 
 // export default Main;
 export default withNavigate(Main);

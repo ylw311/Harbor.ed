@@ -8,10 +8,10 @@ from support import send_sms_message, send_email
 from utils import draw_delaunay, get_combined_emotion, generate_color_gradient
 
 
-settings_draw = 'tri'  # 'tri', 'dot', or 'none'
+settings_draw = 'none'  # 'tri', 'dot', or 'none'
 preferred_communicaation = 'sms'  # 'email' or 'sms' or 'none'
 quiet_model = False
-emotion_counter_threshold = 15
+emotion_counter_threshold = 10
 
 sad_emotions = ['Sad', 'Frustrated', 'Despondent', 'Bittersweet', 'Melancholic']
 angry_emotions = ['Angry', 'Outraged', 'Indignant', 'Bitter', 'Sarcastic']
@@ -49,6 +49,7 @@ while video.isOpened():
 
             cv2.putText(image, combined_emotion, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (224, 77, 176), 2)
             print(analyze['dominant_emotion'])
+            print(analyze['emotion'])
 
             if combined_emotion in sad_emotions:
                 sad_emotion_counter += 1

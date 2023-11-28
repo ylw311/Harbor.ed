@@ -70,9 +70,10 @@ const Card = () => {
   };
 
   const handleButtonClick = () => {
-    navigate("/chat"); // Use navigate function directly
-  };
-
+    const selectedFish = options.find(option => option.id === activeOptionId);
+    navigate("/chat", { state: { selectedFish: selectedFish } }); // passing selected fish in state
+  };  
+  
   // Function to select the model based on the option id
   const selectModel = (id) => {
     switch (id) {
@@ -145,7 +146,7 @@ const Card = () => {
 };
 
 function withNavigate(Component) {
-  return (props) => {
+  return function(props) {
     const navigate = useNavigate();
     return <Component {...props} navigate={navigate} />;
   };
