@@ -2,6 +2,8 @@
 ### Best use of MongoDB
 <b> Nathan, Linda, Richard, Angela </b>
 
+<img width="1215" alt="image" src="https://github.com/ylw311/Harbor.ed/assets/61102300/e43839cc-7fda-4031-b5b1-d6a1c197256a">
+
 
 [Try it out](https://westernharbored.us/)
 
